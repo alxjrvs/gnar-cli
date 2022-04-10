@@ -1,11 +1,12 @@
 {
-  "name": "gnar-cli",
-  "version": "0.0.6",
+  "name": "gnarjs",
+  "version": "0.0.10",
   "description": "Add Gnar approved configurations to your apps in a jiffy",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/TheGnarCo/gnar-node-cli",
-  "author": "Blake Williams",
+  "private": false,
+  "repository": "https://github.com/TheGnarCo/gnarjs",
+  "author": "Blake Williams, Alex Jarvis, and the team at https://www.thegnar.com/",
   "license": "MIT",
   "scripts": {
     "prepare": "tsc",
@@ -14,7 +15,7 @@
     "lint": "yarn run tslint -c tslint.json '**/*.ts' '**/*.tsx'"
   },
   "bin": {
-    "gnar": "dist/index.js"
+    "gnarjs": "dist/index.js"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",
