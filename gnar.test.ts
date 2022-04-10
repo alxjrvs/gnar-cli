@@ -4,7 +4,7 @@ import { commandTestPath, readExampleFile, readTestFile } from './tests/index'
 
 describe('Gnar-CLI', () => {
   describe.each([
-    ['eslint', ['.eslintrc.json', 'package.json']],
+    ['eslint', ['.prettierrc', '.eslintrc.json', 'package.json']],
     ['prettier', ['.prettierrc', 'package.json']],
   ])('%s', (command, files) => {
     beforeAll(() => {

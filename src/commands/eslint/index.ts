@@ -81,7 +81,6 @@ class Eslint {
     return packageInstaller.addDev(
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',
-      'prettier',
       'eslint',
       'eslint-config-airbnb',
       'eslint-plugin-react-hooks',
@@ -108,10 +107,10 @@ class Eslint {
   private updatePackageJson() {
     const scriptConfig = {
       scripts: {
-        lint: 'eslint . -c .eslintrc.json',
+        lint: 'eslint . -c .eslintrc.json --ext .js,.jsx,.ts,.tsx',
       },
       'lint-staged': {
-        '*.{js,jsx,ts,tsx}': 'eslint . -c .eslintrc.json --cache --fix',
+        '*.{js,jsx,ts,tsx}': 'eslint . -c .eslintrc.json --ext .js,.jsx,.ts,.tsx --cache --fix',
       },
     }
 

@@ -9,15 +9,16 @@ program.version('0.0.dev')
 
 program
   .command('prettier')
-  .description('install prettier with default configuration and git hooks')
+  .description('install Prettier with Gnarly configuration')
   .action(async () => {
     await new Prettier().run()
   })
 
 program
   .command('eslint')
-  .description('install eslint with default configuration')
+  .description('install ESLint with Gnarly configuration - now with Prettier!')
   .action(async () => {
+    await new Prettier().run()
     await new Eslint().run()
   })
 
