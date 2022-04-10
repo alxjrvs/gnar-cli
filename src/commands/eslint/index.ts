@@ -11,11 +11,13 @@ const CONFIG = `{
   },
   "plugins": [
       "@typescript-eslint",
+      "regexp",
       "prettier"
   ],
   "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
+      "plugin:regexp/recommended",
       "airbnb",
       "airbnb-typescript",
 
@@ -77,8 +79,12 @@ class Eslint {
 
   private async installDependencies() {
     return packageInstaller.addDev(
+      '@typescript-eslint/eslint-plugin',
+      '@typescript-eslint/parser',
+      'prettier',
       'eslint',
       'eslint-config-airbnb',
+      'eslint-plugin-react-hooks',
       'eslint-config-prettier',
       'eslint-config-airbnb-typescript',
       'eslint-plugin-import',
