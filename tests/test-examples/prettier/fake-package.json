@@ -9,10 +9,9 @@
     "prettier": "^2.6.2"
   },
   "scripts": {
-    "precommit": "lint-staged",
     "prettify": "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,ts,tsx,json,css,md}": ["prettier --write"]
   }
 }
