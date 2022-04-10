@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process'
 
-import { commandTestPath, readExampleFile, readTestFile } from './tests'
+import { commandTestPath, readExampleFile, readTestFile } from './tests/index'
 
 describe('Gnar-CLI', () => {
   describe.each([

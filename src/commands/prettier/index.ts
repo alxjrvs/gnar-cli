@@ -4,6 +4,15 @@ import PackageInstaller from '../../utils/package-installer'
 import PackageJson from '../../utils/package-json'
 
 const PRETTIER_CONFIG_FILE_NAME = '.prettierrc'
+const CONFIG = `{
+  "semi": false,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "arrowParens": "avoid"
+}
+`
 
 class Prettier {
   public async run() {
@@ -13,24 +22,23 @@ class Prettier {
   }
 
   private async installDependencies() {
-    return await PackageInstaller.addDev('prettier', 'lint-staged', 'husky')
+    return PackageInstaller.addDev('prettier', 'lint-staged', 'husky')
   }
 
   private async writeConfig() {
     process.stdout.write('Writing Prettier config to .prettierrc\n\n')
-    fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, config)
+    fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, CONFIG)
 
-    return await Promise.resolve()
+    return Promise.resolve()
   }
 
   private updatePackageJson() {
     const scriptConfig = {
       scripts: {
-        precommit: 'lint-staged',
         prettify: "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
       },
       'lint-staged': {
-        '*.{js,ts,tsx,json,css,md}': ['prettier --write', 'git add'],
+        '*.{js,ts,tsx,json,css,md}': ['prettier --write'],
       },
     }
 
@@ -40,11 +48,5 @@ class Prettier {
   }
 }
 
-const config = `{
-  trailingComma: "all",
-  singleQuote: true,
-  semi: false
-}
-`
 
 export default Prettier

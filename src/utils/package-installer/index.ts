@@ -2,11 +2,8 @@ import { execSync } from 'node:child_process'
 import * as fs from 'node:fs'
 
 import Npm from './npm'
+import { PackageInstallable } from './types'
 import Yarn from './yarn'
-
-export interface PackageInstallable {
-  addDev: (packages: string) => string
-}
 
 const YARN_LOCK_FILE = 'yarn.lock'
 
@@ -19,7 +16,7 @@ class PackageInstaller {
 
     execSync(command)
 
-    return await Promise.resolve()
+    return Promise.resolve()
   }
 
   private getPackageManager(): PackageInstallable {

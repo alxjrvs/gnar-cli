@@ -8,15 +8,6 @@ const CONFIG_FILE_NAME = '.eslintrc.json'
 const CONFIG = `{
   "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
-  "globals": {
-    "document": true,
-    "window": true,
-    "expect": true,
-    "beforeEach": true,
-    "describe": true,
-    "test": true,
-    "jest": true
-  },
   "rules": {
     "arrow-body-style": [1, "as-needed"],
     "class-methods-use-this": "off",
@@ -55,18 +46,28 @@ class Eslint {
   public async run() {
     process.stdout.write('Setting up eslint...\n\n')
 
-    await this.installDependencies().then(this.writeConfig).then(this.updatePackageJson)
+    await this.installDependencies()
+    await this.writeConfig()
+    this.updatePackageJson()
   }
 
   private async installDependencies() {
-    return await PackageInstaller.addDev(
-      'babel-eslint',
+    return PackageInstaller.addDev(
       'eslint',
       'eslint-config-airbnb',
-      'eslint-plugin-import',
-      'eslint-plugin-jsx-a11y',
-      'eslint-plugin-react',
       'eslint-config-prettier',
+      'eslint-config-standard-with-typescript',
+      'eslint-plugin-import',
+      'eslint-plugin-jest',
+      'eslint-plugin-jest-formatting',
+      'eslint-plugin-jsx-a11y',
+      'eslint-plugin-node',
+      'eslint-plugin-prettier',
+      'eslint-plugin-promise',
+      'eslint-plugin-react',
+      'eslint-plugin-regexp',
+      'eslint-plugin-simple-import-sort',
+      'eslint-plugin-unused-imports',
     )
   }
 
@@ -75,13 +76,16 @@ class Eslint {
 
     fs.writeFileSync(CONFIG_FILE_NAME, CONFIG)
 
-    return await Promise.resolve()
+    return Promise.resolve()
   }
 
   private updatePackageJson() {
     const scriptConfig = {
       scripts: {
-        lint: "eslint '**/*.js'",
+        lint: 'eslint . -c .eslintrc.json',
+      },
+      'lint-staged': {
+        '*.{js,jsx,ts,tsx}': 'eslint . -c .eslintrc.json --cache --fix',
       },
     }
 

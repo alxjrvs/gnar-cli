@@ -1,5 +1,5 @@
-import { merge } from 'lodash'
 import * as fs from 'node:fs'
+import { merge } from 'lodash'
 
 class PackageJson {
   public contents: string
