@@ -68,6 +68,6 @@
     "lodash": "^4.17.21"
   },
   "lint-staged": {
-    "*.{js,ts,json,css,md}": "yarn lint --cache --fix"
+    "*.{js,ts}": "yarn lint --cache --fix"
   }
 }
