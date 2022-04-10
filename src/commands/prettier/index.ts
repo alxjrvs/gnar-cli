@@ -4,15 +4,7 @@ import PackageInstaller from '../../utils/package-installer'
 import PackageJson from '../../utils/package-json'
 
 const PRETTIER_CONFIG_FILE_NAME = '.prettierrc'
-const CONFIG = `{
-  "semi": false,
-  "trailingComma": "all",
-  "singleQuote": true,
-  "printWidth": 100,
-  "tabWidth": 2,
-  "arrowParens": "avoid"
-}
-`
+const CONFIG = fs.readFileSync('../../.prettierrc', 'utf8')
 
 class Prettier {
   public async run() {

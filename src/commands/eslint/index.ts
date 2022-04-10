@@ -91,8 +91,6 @@ class Eslint {
       'eslint-plugin-prettier',
       'eslint-plugin-react',
       'eslint-plugin-regexp',
-      'lint-staged',
-      'husky',
     )
   }
 
