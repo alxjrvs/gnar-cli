@@ -5,11 +5,13 @@
     },
     "plugins": [
         "@typescript-eslint",
+        "regexp",
         "prettier"
     ],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:regexp/recommended",
         "airbnb",
         "airbnb-typescript",
 

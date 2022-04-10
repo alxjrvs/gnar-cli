@@ -80,18 +80,14 @@ class Eslint {
       'eslint',
       'eslint-config-airbnb',
       'eslint-config-prettier',
-      'eslint-config-standard-with-typescript',
+      'eslint-config-airbnb-typescript',
       'eslint-plugin-import',
-      'eslint-plugin-jest',
-      'eslint-plugin-jest-formatting',
       'eslint-plugin-jsx-a11y',
-      'eslint-plugin-node',
       'eslint-plugin-prettier',
-      'eslint-plugin-promise',
       'eslint-plugin-react',
       'eslint-plugin-regexp',
-      'eslint-plugin-simple-import-sort',
-      'eslint-plugin-unused-imports',
+      'lint-staged',
+      'husky',
     )
   }
 

@@ -11,8 +11,7 @@ const CONFIG = `{
   "printWidth": 100,
   "tabWidth": 2,
   "arrowParens": "avoid"
-}
-`
+}`
 
 class Prettier {
   public async run() {
