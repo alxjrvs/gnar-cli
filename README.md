@@ -1,4 +1,4 @@
-# Gnar CLI
+# GnarJS
 
 The fastest way to get Gnar Approved&trade; configurations into your
 application.
