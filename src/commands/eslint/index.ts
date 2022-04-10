@@ -1,9 +1,7 @@
-import { execSync } from 'child_process'
-import * as fs from 'fs'
-import { merge } from 'lodash'
+import * as fs from 'node:fs'
 
-import PackageJson from '../../utils/package-json'
 import PackageInstaller from '../../utils/package-installer'
+import PackageJson from '../../utils/package-json'
 
 const CONFIG_FILE_NAME = '.eslintrc.json'
 
@@ -54,16 +52,14 @@ const CONFIG = `{
 }`
 
 class Eslint {
-  public run() {
+  public async run() {
     process.stdout.write('Setting up eslint...\n\n')
 
-    this.installDependencies()
-      .then(this.writeConfig)
-      .then(this.updatePackageJson)
+    await this.installDependencies().then(this.writeConfig).then(this.updatePackageJson)
   }
 
-  private installDependencies() {
-    return PackageInstaller.addDev(
+  private async installDependencies() {
+    return await PackageInstaller.addDev(
       'babel-eslint',
       'eslint',
       'eslint-config-airbnb',
@@ -74,20 +70,18 @@ class Eslint {
     )
   }
 
-  private writeConfig() {
-    process.stdout.write(
-      `Writing the following config to ${CONFIG_FILE_NAME}\n\n`,
-    )
+  private async writeConfig() {
+    process.stdout.write(`Writing the following config to ${CONFIG_FILE_NAME}\n\n`)
 
     fs.writeFileSync(CONFIG_FILE_NAME, CONFIG)
 
-    return Promise.resolve()
+    return await Promise.resolve()
   }
 
   private updatePackageJson() {
     const scriptConfig: any = {
       scripts: {
-        lint: "npm run eslint '**/*.js'",
+        lint: "eslint '**/*.js'",
       },
     }
 

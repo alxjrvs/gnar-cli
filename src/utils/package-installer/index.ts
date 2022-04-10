@@ -1,17 +1,17 @@
-import * as fs from 'fs'
-import { execSync } from 'child_process'
+import { execSync } from 'node:child_process'
+import * as fs from 'node:fs'
 
-import Yarn from './yarn'
 import Npm from './npm'
+import Yarn from './yarn'
 
 export interface PackageInstallable {
-  addDev(packages: string): string
+  addDev: (packages: string) => string
 }
 
 const YARN_LOCK_FILE = 'yarn.lock'
 
 class PackageInstaller {
-  public addDev(...packages: string[]): Promise<void> {
+  public async addDev(...packages: string[]): Promise<void> {
     const packageString = packages.join(' ')
     const command = this.getPackageManager().addDev(packageString)
 
@@ -19,15 +19,11 @@ class PackageInstaller {
 
     execSync(command)
 
-    return Promise.resolve()
+    return await Promise.resolve()
   }
 
   private getPackageManager(): PackageInstallable {
-    if (fs.existsSync(YARN_LOCK_FILE)) {
-      return new Yarn()
-    } else {
-      return new Npm()
-    }
+    return fs.existsSync(YARN_LOCK_FILE) ? new Yarn() : new Npm()
   }
 }
 
