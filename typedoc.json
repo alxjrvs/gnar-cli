@@ -2,6 +2,6 @@
   "entryPoints": ["./src/index.ts"],
   "sort": ["source-order"],
   "out": "./docs",
-  "name": "gnarjs",
+  "name": "gnar-cli",
   "includeVersion": true
 }

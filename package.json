@@ -1,11 +1,11 @@
 {
-  "name": "gnarjs",
+  "name": "gnar-cli",
   "version": "0.0.10",
   "description": "Add Gnar approved configurations to your apps in a jiffy",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": false,
-  "repository": "https://github.com/TheGnarCo/gnarjs",
+  "repository": "https://github.com/TheGnarCo/gnar-cli",
   "author": "Blake Williams, Alex Jarvis, and the team at https://www.thegnar.com/",
   "license": "MIT",
   "scripts": {
@@ -27,7 +27,7 @@
     "dist/**/*"
   ],
   "bin": {
-    "gnarjs": "dist/index.js"
+    "gnar": "dist/index.js"
   },
   "devDependencies": {
     "@types/jest": "^27.0.0",

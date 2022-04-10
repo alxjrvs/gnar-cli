@@ -2,7 +2,7 @@ import { execSync } from 'node:child_process'
 
 import { commandTestPath, readExampleFile, readTestFile } from './tests'
 
-describe('GnarJS', () => {
+describe('Gnar-CLI', () => {
   describe.each([
     ['eslint', ['.eslintrc.json', 'package.json']],
     ['prettier', ['.prettierrc', 'package.json']],

@@ -1,11 +1,11 @@
-# GnarJS
+# Gnar CLI
 
 The fastest way to get Gnar Approved&trade; configurations into your
 application.
 
 # Usage
 
-First, install Gnar CLI with `yarn global add gnarjs`. Now run `gnarjs --help`
+First, install Gnar CLI with `yarn global add gnar-cli`. Now run `gnar --help`
 
 # Developing
 
