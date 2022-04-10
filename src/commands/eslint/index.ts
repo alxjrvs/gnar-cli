@@ -1,44 +1,68 @@
 import * as fs from 'node:fs'
-
-import PackageInstaller from '../../utils/package-installer'
+import packageInstaller from '../../utils/package-installer'
 import PackageJson from '../../utils/package-json'
 
 const CONFIG_FILE_NAME = '.eslintrc.json'
 
 const CONFIG = `{
-  "extends": ["airbnb", "prettier"],
-  "parser": "babel-eslint",
+  "env": {
+      "browser": true,
+      "es2021": true
+  },
+  "plugins": [
+      "@typescript-eslint",
+      "prettier"
+  ],
+  "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "airbnb",
+      "airbnb-typescript",
+
+      "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+      "project": "./tsconfig.json",
+      "createDefaultProgram": true
+  },
   "rules": {
-    "arrow-body-style": [1, "as-needed"],
-    "class-methods-use-this": "off",
-    "func-names": ["error", "never"],
-    "import/no-webpack-loader-syntax": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "sibling",
-          "index",
-          "parent"
-        ]
-      }
-    ],
-    "no-else-return": "off",
-    "no-underscore-dangle": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "local",
-        "varsIgnorePattern": "_",
-        "args": "after-used",
-        "argsIgnorePattern": "_"
-      }
-    ],
-    "no-use-before-define": "off",
-    "react/jsx-filename-extension": "off"
+      "arrow-body-style": [
+          1,
+          "as-needed"
+      ],
+      "class-methods-use-this": "off",
+      "func-names": [
+          "error",
+          "never"
+      ],
+      "import/no-webpack-loader-syntax": "off",
+      "import/order": [
+          "error",
+          {
+              "groups": [
+                  "builtin",
+                  "external",
+                  "internal",
+                  "sibling",
+                  "index",
+                  "parent"
+              ]
+          }
+      ],
+      "no-else-return": "off",
+      "no-underscore-dangle": "off",
+      "no-unused-vars": [
+          "error",
+          {
+              "vars": "local",
+              "varsIgnorePattern": "_",
+              "args": "after-used",
+              "argsIgnorePattern": "_"
+          }
+      ],
+      "no-use-before-define": "off",
+      "react/jsx-filename-extension": "off"
   }
 }`
 
@@ -52,7 +76,7 @@ class Eslint {
   }
 
   private async installDependencies() {
-    return PackageInstaller.addDev(
+    return packageInstaller.addDev(
       'eslint',
       'eslint-config-airbnb',
       'eslint-config-prettier',
