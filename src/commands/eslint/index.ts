@@ -79,7 +79,7 @@ class Eslint {
   }
 
   private updatePackageJson() {
-    const scriptConfig: any = {
+    const scriptConfig = {
       scripts: {
         lint: "eslint '**/*.js'",
       },

@@ -9,7 +9,7 @@ class PackageJson {
     this.contents = JSON.parse(packageJson)
   }
 
-  public merge(config: any): PackageJson {
+  public merge(config: Record<string, unknown>): PackageJson {
     const prettyConfig = JSON.stringify(config, undefined, 2)
 
     process.stdout.write('Merging the following into your package.json... \n')

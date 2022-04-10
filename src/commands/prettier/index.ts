@@ -24,7 +24,7 @@ class Prettier {
   }
 
   private updatePackageJson() {
-    const scriptConfig: any = {
+    const scriptConfig = {
       scripts: {
         precommit: 'lint-staged',
         prettify: "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
