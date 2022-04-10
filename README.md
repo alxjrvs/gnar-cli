@@ -14,8 +14,8 @@ Gnar-CLI is powered by [TypeScript] which means the project has to be compiled
 before being run.
 
 1. Run `yarn` to install dependencies
-1. Run `yarn start` to start the TypeScript compiler in watch mode.
-1. Run `node dist/index.js` to run the 'compiled' application
+1. Run `yarn build:watch` to start the TypeScript compiler in watch mode.
+1. Run `yarn dev` to run the local build of the application
 
 [typescript]: https://www.typescriptlang.org/
 
