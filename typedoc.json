@@ -1,0 +1,8 @@
+{
+  "entryPoints": ["./src"],
+  "sort": ["source-order"],
+  "out": "./docs",
+  "exclude": ["./src/**/**/*.test.ts", "./dist", "./coverage"],
+  "name": "gnarjs",
+  "includeVersion": true
+}
