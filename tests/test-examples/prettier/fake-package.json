@@ -1,0 +1,17 @@
+{
+  "name": "prettier",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.2"
+  },
+  "scripts": {
+    "prettify": "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,json,css,md}": ["prettier --write"]
+  }
+}

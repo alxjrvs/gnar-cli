@@ -1,41 +1,36 @@
-import { spawn } from 'child_process'
-import * as fs from 'fs'
+import * as fs from 'node:fs'
 
-import PackageJson from '../../utils/package-json'
 import PackageInstaller from '../../utils/package-installer'
+import PackageJson from '../../utils/package-json'
 
 const PRETTIER_CONFIG_FILE_NAME = '.prettierrc'
+const CONFIG = fs.readFileSync('../../.prettierrc', 'utf8')
 
 class Prettier {
-  public run() {
+  public async run() {
     process.stdout.write('Setting up Prettier...\n\n')
 
-    this.installDependencies()
-      .then(this.writeConfig)
-      .then(this.updatePackageJson)
+    await this.installDependencies().then(this.writeConfig).then(this.updatePackageJson)
   }
 
-  private installDependencies() {
+  private async installDependencies() {
     return PackageInstaller.addDev('prettier', 'lint-staged', 'husky')
   }
 
-  private writeConfig() {
+  private async writeConfig() {
     process.stdout.write('Writing Prettier config to .prettierrc\n\n')
-    fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, config)
+    fs.writeFileSync(PRETTIER_CONFIG_FILE_NAME, CONFIG)
 
     return Promise.resolve()
   }
 
   private updatePackageJson() {
-    const scriptConfig: any = {
+    const scriptConfig = {
       scripts: {
-        precommit: 'lint-staged',
-        prettify:
-          "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
+        prettify: "prettier '*.{js,ts,tsx}' '{src,app,__tests__}/**/*.{js,ts,tsx}' --write",
       },
-      // tslint:disable object-literal-sort-keys
       'lint-staged': {
-        '*.{js,ts,tsx,json,css,md}': ['prettier --write', 'git add'],
+        '*.{js,ts,tsx,json,css,md}': ['prettier --write'],
       },
     }
 
@@ -44,12 +39,5 @@ class Prettier {
     packageJson.write()
   }
 }
-
-const config = `{
-  trailingComma: "all",
-  singleQuote: true,
-  semi: false
-}
-`
 
 export default Prettier
